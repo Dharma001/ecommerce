@@ -3,7 +3,6 @@ import ErrorHandler from '../utils/utility-class.js';
 import { ControllerType } from '../types/types.js';
 
 export const errorMiddleware: ErrorRequestHandler = (err: ErrorHandler, req: Request, res: Response, next: NextFunction) => {
-
   res.status(err.statusCode || 500).json({
     success: false,
     message: err.message || "An unexpected error occurred",
@@ -14,7 +13,5 @@ export const errorMiddleware: ErrorRequestHandler = (err: ErrorHandler, req: Req
 //wrapper function
 
 export const TryCatch = (func: ControllerType) => (req: Request, res: Response , next: NextFunction) => {
-  return Promise.resolve(func(req, res, next)).catch(next)
+  Promise.resolve(func(req, res, next)).catch(next)
 }
-
-const a = TryCatch;
