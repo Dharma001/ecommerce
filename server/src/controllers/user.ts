@@ -1,6 +1,7 @@
 import { Request , Response , NextFunction } from "express"
 import { User } from "../models/user.js";
 import { NewUserRequestBody } from "../types/types.js";
+import ErrorHandler from "../utils/utility-class.js";
 
 
 export const newUser = async (req: Request<{}, {} , NewUserRequestBody>, res: Response, next: NextFunction) => {
@@ -21,9 +22,6 @@ export const newUser = async (req: Request<{}, {} , NewUserRequestBody>, res: Re
       message: `Welcome ${user.name}`
     })
   } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: error
-    })
+    next(error)
   }
 }
