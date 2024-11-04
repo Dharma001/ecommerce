@@ -12,6 +12,6 @@ export const errorMiddleware: ErrorRequestHandler = (err: ErrorHandler, req: Req
 
 //wrapper function
 
-export const TryCatch = (fn: Function) => (req: Request, res: Response, next: NextFunction) => {
-  Promise.resolve(fn(req, res, next)).catch(next);
-};
+export const TryCatch = (func: ControllerType) => (req: Request, res: Response , next: NextFunction) => {
+  Promise.resolve(func(req, res, next)).catch(next)
+}

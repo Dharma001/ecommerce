@@ -5,7 +5,7 @@ import { TryCatch } from "../middlewares/error.js";
 import ErrorHandler from "../utils/utility-class.js";
 
 
-export const newUser = TryCatch(async (req: Request<{}, {} , NewUserRequestBody>, res: Response, next: NextFunction) => {  
+export const newUser = TryCatch(async (req, res, next) => { 
   const {name, email, photo, gender, _id, dob} = req.body;
 
   let user = await User.findById(_id)
@@ -34,7 +34,7 @@ export const newUser = TryCatch(async (req: Request<{}, {} , NewUserRequestBody>
     })
 });
 
-export const getAllUsers = TryCatch(async (req: Request<{}, {} , NewUserRequestBody>, res: Response, next: NextFunction) => {
+export const getAllUsers = TryCatch(async (req, res, next) => {
   const users = await User.find({})
 
   return res.status(201).json({
@@ -43,7 +43,7 @@ export const getAllUsers = TryCatch(async (req: Request<{}, {} , NewUserRequestB
   })
 })
 
-export const getUser = TryCatch(async (req: Request<{}, {} , NewUserRequestBody>, res: Response, next: NextFunction) => {
+export const getUser = TryCatch(async (req, res, next) => {
 
   const id = req.params.id;
 
@@ -56,7 +56,7 @@ export const getUser = TryCatch(async (req: Request<{}, {} , NewUserRequestBody>
   })
 })
 
-export const deleteUser = TryCatch(async (req: Request<{}, {} , NewUserRequestBody>, res: Response, next: NextFunction) => {
+export const deleteUser = TryCatch(async (req, res, next) => {
 
   const id = req.params.id;
 
