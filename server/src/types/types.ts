@@ -27,3 +27,26 @@ export type ControllerType = (req: Request, res: Response, next: NextFunction) =
 // Params: {} → No route parameters.
 // ResBody: {} → Not specifying a specific type for the response body.
 // ReqBody: NewProductRequestBody → This is the type of the data expected in the request body.
+
+export type SearchRequestQuery =  {
+  search?: string;
+  price?: string;
+  category?: string;
+  sort?: string;
+  page?: string;
+}
+
+export interface BaseQuery {
+  name?: {
+    $regex: string;
+    $options: string;
+  };
+  price?: { $lte: number; }
+  category?: string;
+}
+
+export type InvalidateCacheType = {
+  product?: boolean;
+  order?: boolean;
+  admin?: boolean;
+}
